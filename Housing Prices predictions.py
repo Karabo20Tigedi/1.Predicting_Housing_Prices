@@ -5,8 +5,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.impute import SimpleImputer
 
 # Read the data
-X_full = pd.read_csv("C:\Users\nelly\OneDrive - University of Cape Town\Data Science\DATA SETS\home-data-for-ml-course\train.csv", index_col='Id')
-X_test_full = pd.read_csv("C:\Users\nelly\OneDrive - University of Cape Town\Data Science\DATA SETS\home-data-for-ml-course\test.csv", index_col='Id')
+X_full = pd.read_csv("C:\Users\nelly\OneDrive - University of Cape Town\Data Science\PERSONAL PROJECTS\Machine Learning\Housing Prices predictions\Data\train.csv", index_col='Id')
+X_test_full = pd.read_csv("C:\Users\nelly\OneDrive - University of Cape Town\Data Science\PERSONAL PROJECTS\Machine Learning\Housing Prices predictions\Data\test.csv"", index_col='Id')
 
 # Remove rows with missing target, separate target from predictors
 X_full.dropna(axis=0, subset=['SalePrice'], inplace=True)
@@ -75,7 +75,3 @@ final_X_test = pd.DataFrame(final_imputer.fit_transform(X_test))
 preds_test = model.predict(final_X_test)
 
 
-# Save test predictions to file
-output = pd.DataFrame({'Id': X_test.index,
-                       'SalePrice': preds_test})
-output.to_csv('submission.csv', index=False)
