@@ -53,7 +53,17 @@ my_pipeline.fit(X_train, y_train)
 predictions = my_pipeline.predict(X_valid)  # Fixed the typo here
 print('MAE:', mean_absolute_error(y_valid, predictions))  # Fixed the typo here
 
+# Make predictions on the test data
+test_preds = my_pipeline.predict(X_test)
 
+# Save the predictions in the format required for submission
+output = pd.DataFrame({'Id': X_test.index, 'SalePrice': test_preds})
+
+# Construct the path for saving predictions
+output_path = os.path.join(script_dir, "submission.csv")
+output.to_csv(output_path, index=False)
+
+print(f"Predictions saved to {output_path}")
 
 
 
